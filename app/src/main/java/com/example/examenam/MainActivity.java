@@ -2,6 +2,7 @@ package com.example.examenam;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.os.Bundle;
 
@@ -19,7 +20,10 @@ public class MainActivity extends AppCompatActivity {
         phvGallery.getBuilder()
                 .setHasFixedSize(false)
                 .setItemViewCacheSize(10)
-                .setLayoutManager(new GridLayoutManager(this, 3));
+                .setLayoutManager(new LinearLayoutManager(
+                        getApplicationContext(),
+                        LinearLayoutManager.HORIZONTAL,
+                        false));
 
         phvGallery
                 .addView(new GalleryImage(getApplicationContext(), "https://firebasestorage.googleapis.com/v0/b/artesanias-304016.appspot.com/o/images%2Faccesorios.jpg?alt=media&token=2e975a70-f3f5-4642-b130-47e8085e553d"))
