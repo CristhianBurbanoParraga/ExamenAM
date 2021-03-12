@@ -5,51 +5,51 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.os.Bundle;
+import android.util.Log;
 
+import com.mindorks.placeholderview.InfinitePlaceHolderView;
 import com.mindorks.placeholderview.PlaceHolderView;
 
-public class MainActivity extends AppCompatActivity {
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import WebServices.Asynchtask;
+import WebServices.WebService;
+
+public class MainActivity extends AppCompatActivity implements Asynchtask {
+
+    private InfinitePlaceHolderView mLoadMoreView;
+    List<Revistas> feedList;
+    Map<String, String> datos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mLoadMoreView = (InfinitePlaceHolderView)findViewById(R.id.loadMoreView);
+        datos = new HashMap<String, String>();
+        WebService ws= new WebService("https://revistas.uteq.edu.ec/ws/journals.php", datos, this, this);
+        ws.execute("");
+    }
 
-        /*PlaceHolderView phvGallery = (PlaceHolderView)findViewById(R.id.phv_gallery);
+    private void setupView() {
+        //feedList = Utils.loadInfiniteFeeds(this.getApplicationContext());
+        Log.d("DEBUG", "LoadMoreView.LOAD_VIEW_SET_COUNT " + LoadMoreView.LOAD_VIEW_SET_COUNT);
+        for(int i = 0; i < LoadMoreView.LOAD_VIEW_SET_COUNT; i++){
+            mLoadMoreView.addView(new ItemView(this.getApplicationContext(), feedList.get(i)));
+        }
+        mLoadMoreView.setLoadMoreResolver(new LoadMoreView(mLoadMoreView, feedList));
+    }
 
-        phvGallery.getBuilder()
-                .setHasFixedSize(false)
-                .setItemViewCacheSize(10)
-                .setLayoutManager(new LinearLayoutManager(
-                        getApplicationContext(),
-                        LinearLayoutManager.HORIZONTAL,
-                        false));
-
-        phvGallery
-                .addView(new GalleryImage(getApplicationContext(), "https://firebasestorage.googleapis.com/v0/b/artesanias-304016.appspot.com/o/images%2Faccesorios.jpg?alt=media&token=2e975a70-f3f5-4642-b130-47e8085e553d"))
-                .addView(new GalleryImage(getApplicationContext(), "https://firebasestorage.googleapis.com/v0/b/artesanias-304016.appspot.com/o/images%2Fartesana-as-en-madera.jpg?alt=media&token=c98ebc9b-cccf-41dd-8403-015b2c99e400"))
-                .addView(new GalleryImage(getApplicationContext(), "https://firebasestorage.googleapis.com/v0/b/artesanias-304016.appspot.com/o/images%2Fbolsos-artesanales-620x330.jpg?alt=media&token=c34ca617-b6f9-43af-a037-7f61570bfdc2"))
-                .addView(new GalleryImage(getApplicationContext(), "https://firebasestorage.googleapis.com/v0/b/artesanias-304016.appspot.com/o/images%2Fcaballomadera.jpg?alt=media&token=d4c7b249-218b-44d7-a4f8-fe2a9c90a097"));*/
-
-
-        /*PlaceHolderView mGalleryView = (PlaceHolderView)findViewById(R.id.galleryView);
-        // (Optional): If customisation is Required then use Builder with the PlaceHolderView // placeHolderView.getBuilder() //
-
-        mGalleryView.getBuilder()
-        .setHasFixedSize(false) //
-        .setItemViewCacheSize(10) //
-        .setLayoutManager(new GridLayoutManager(this, 3));
-
-        mGalleryView
-
-                .addView(new ItemTypeBig(this.getApplicationContext(), mGalleryView, "https://firebasestorage.googleapis.com/v0/b/artesanias-304016.appspot.com/o/images%2Fcaballomadera.jpg?alt=media&token=d4c7b249-218b-44d7-a4f8-fe2a9c90a097"));
-
-                /*.addView(new ImageTypeBig(this.getApplicationContext(), mGalleryView, url2));
-
-                .addView(new ImageTypeBig(this.getApplicationContext(), mGalleryView, url3));
-
-                .addView(new ImageTypeBig(this.getApplicationContext(), mGalleryView, url4));*/
-
-
+    @Override
+    public void processFinish(String result) throws JSONException {
+        JSONObject revistas=  new JSONObject(result);
+        feedList = Utils.loadInfiniteFeeds(revistas);
+        //listaPaises = Paises.JsonObjectsBuild(pais);
+        setupView();
     }
 }

@@ -34,10 +34,10 @@ public class ItemView {
 
     @Resolve
     private void onResolved() {
-        titleTxt.setText(mInfo.getTitle());
-        captionTxt.setText(mInfo.getCaption());
+        titleTxt.setText(mInfo.getName());
+        captionTxt.setText(mInfo.getDescription());
         abbreviationTxt.setText(mInfo.getAbbreviation());
-        Glide.with(mContext).load(mInfo.getImageUrl()).into(imageView);
+        Glide.with(mContext).load(mInfo.getPortada()).into(imageView);
     }
 
 }

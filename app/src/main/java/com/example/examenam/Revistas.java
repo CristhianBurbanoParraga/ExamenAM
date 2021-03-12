@@ -7,44 +7,44 @@ import java.util.ArrayList;
 
 public class Revistas {
 
-    @SerializedName("title")
+    @SerializedName("journal_id")
     @Expose
-    private String title;
+    private String journal_id;
 
-    @SerializedName("image_url")
+    @SerializedName("portada")
     @Expose
-    private String imageUrl;
-
-    @SerializedName("caption")
-    @Expose
-    private String caption;
+    private String portada;
 
     @SerializedName("abbreviation")
     @Expose
     private String abbreviation;
 
-    public String getTitle() {
-        return title;
+    @SerializedName("description")
+    @Expose
+    private String description;
+
+    @SerializedName("journalThumbnail")
+    @Expose
+    private String journalThumbnail;
+
+    @SerializedName("name")
+    @Expose
+    private String name;
+
+    public String getJournal_id() {
+        return journal_id;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setJournal_id(String journal_id) {
+        this.journal_id = journal_id;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
+    public String getPortada() {
+        return portada;
     }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
-
-    public String getCaption() {
-        return caption;
-    }
-
-    public void setCaption(String caption) {
-        this.caption = caption;
+    public void setPortada(String portada) {
+        this.portada = portada;
     }
 
     public String getAbbreviation() {
@@ -53,5 +53,29 @@ public class Revistas {
 
     public void setAbbreviation(String abbreviation) {
         this.abbreviation = abbreviation;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getJournalThumbnail() {
+        return journalThumbnail;
+    }
+
+    public void setJournalThumbnail(String journalThumbnail) {
+        this.journalThumbnail = journalThumbnail;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }
