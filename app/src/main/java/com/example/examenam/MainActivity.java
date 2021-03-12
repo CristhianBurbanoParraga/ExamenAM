@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
                 .addView(new GalleryImage(getApplicationContext(), "https://firebasestorage.googleapis.com/v0/b/artesanias-304016.appspot.com/o/images%2Fcaballomadera.jpg?alt=media&token=d4c7b249-218b-44d7-a4f8-fe2a9c90a097"));*/
 
 
-        PlaceHolderView mGalleryView = (PlaceHolderView)findViewById(R.id.galleryView);
+        /*PlaceHolderView mGalleryView = (PlaceHolderView)findViewById(R.id.galleryView);
         // (Optional): If customisation is Required then use Builder with the PlaceHolderView // placeHolderView.getBuilder() //
 
         mGalleryView.getBuilder()
