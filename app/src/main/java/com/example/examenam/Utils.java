@@ -2,8 +2,14 @@ package com.example.examenam;
 
 import android.content.Context;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -16,7 +22,7 @@ public class Utils {
 
     private static final String TAG = "Utils";
 
-    public static List<Revistas> loadInfiniteFeeds(JSONObject datos) throws JSONException {
+    public static List<Revistas> loadInfiniteFeeds(JSONArray datos) throws JSONException {
         ArrayList<Revistas> revistas = new ArrayList<>();
         GsonBuilder builder = new GsonBuilder();
         Gson gson = builder.create();
@@ -32,6 +38,7 @@ public class Utils {
             e.printStackTrace();
             return null;
         }
+
     }
 
 }

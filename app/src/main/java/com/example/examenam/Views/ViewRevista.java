@@ -1,16 +1,18 @@
-package com.example.examenam;
+package com.example.examenam.Views;
 
 import android.content.Context;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.examenam.Modelos.Revista;
+import com.example.examenam.R;
 import com.mindorks.placeholderview.annotations.Layout;
 import com.mindorks.placeholderview.annotations.Resolve;
 import com.mindorks.placeholderview.annotations.View;
 
 @Layout(R.layout.load_more_item_view)
-public class ItemView {
+public class ViewRevista {
 
     @View(R.id.titleTxt)
     private TextView titleTxt;
@@ -21,19 +23,19 @@ public class ItemView {
     @View(R.id.imageView)
     private ImageView imageView;
 
-    private Revistas mInfo;
+    private Revista revista;
     private Context mContext;
 
-    public ItemView(Context context, Revistas info) {
+    public ViewRevista(Context context, Revista r) {
         mContext = context;
-        mInfo = info;
+        revista = r;
     }
 
     @Resolve
     private void onResolved() {
-        titleTxt.setText(mInfo.getName());
-        captionTxt.setText(mInfo.getDescription());
-        Glide.with(mContext).load(mInfo.getPortada()).into(imageView);
+        titleTxt.setText(revista.getName());
+        captionTxt.setText(revista.getDescription());
+        Glide.with(mContext).load(revista.getPortada()).into(imageView);
     }
 
 }
